@@ -17,7 +17,7 @@ class PyCachEngine:
 		self.num_games = 1
 		while True:
 			self.board.reset()
-			self.learn(100)
+			self.learn(200)
 
 	def __del__(self):
 		self.db.close()
@@ -89,7 +89,7 @@ class PyCachEngine:
 if __name__ == '__main__':
 	try:
 		options = {
-			'Threads': 4,
+			'Threads': 6,
 			'Hash': 8192
 		}
 		PyCachEngine(
