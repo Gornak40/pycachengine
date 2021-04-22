@@ -14,7 +14,10 @@ class PyCachEngine:
 		self._ready()
 		for option, val in options.items():
 			self._set_option(option, val)
-		self.learn(100)
+		self.num_games = 1
+		while True:
+			self.board.reset()
+			self.learn(100)
 
 	def __del__(self):
 		self.db.close()
@@ -69,21 +72,25 @@ class PyCachEngine:
 		system('clear')
 #		print(fen)
 		print(self.board)
+		print()
 		print('new_fen:', new_fen)
 		print('depth:', depth)
 		print('move:', move)
 		print('db_size:', len(self.db))
+		print('num_games:', self.num_games)
 		if not self.board.is_game_over():
 			self.learn(movetime)
 		else:
-			print(self.board.outcome().result())
+			result = self.board.outcome().result()
+			self.num_games += 1
+			print(result)
 
 
 if __name__ == '__main__':
 	try:
 		options = {
 			'Threads': 4,
-			'Hash': 4096
+			'Hash': 8192
 		}
 		PyCachEngine(
 			path='./stockfish_13_linux_x64_avx2', 
