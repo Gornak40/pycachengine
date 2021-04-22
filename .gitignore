@@ -1,3 +1,5 @@
+stockfish_13_linux_x64_avx2
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
